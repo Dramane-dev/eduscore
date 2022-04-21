@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("./theme/variables.scss");
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: monospace, sans-serif;
+    background-color: var(--dark-body-color);
+}
+
+
+mat-dialog-container {
+    background-color: var(--dark-body-color) !important;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html, body { height: 100%; }

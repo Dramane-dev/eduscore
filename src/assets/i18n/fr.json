@@ -1,0 +1,14 @@
+{
+    "Components": {
+        "Home": {},
+        "Dashboard": {
+            "Title": "Bienvenue sur eduScore",
+            "SubTitle": "Suivi de votre scolarité"
+        },
+        "Popup": {
+            "CreateTitle": "Création d'une note",
+            "UpdateTitle": "Mise à jour d'une note",
+            "DeleteTitle": "Suppression d'une note"
+        }
+    }
+}
