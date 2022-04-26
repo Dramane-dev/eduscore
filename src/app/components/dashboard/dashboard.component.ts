@@ -11,12 +11,12 @@ export class DashboardComponent implements OnInit {
   public materials: IMaterials[] = [
     {
       name: "Programmation",
-      coefficient: 1,
+      coefficient: 1.5,
       note: 15.01
     },
     {
       name: "Java",
-      coefficient: 1,
+      coefficient: 2,
       note: 15.01
     },
     {
@@ -34,6 +34,15 @@ export class DashboardComponent implements OnInit {
   }
 
   openPopup(): void {
+  }
+
+  addSubject(name: string, coefficient: number): void {
+    let newSubject: IMaterials ={
+      name: name,
+      coefficient: coefficient,
+      note: 0
+    }
+    this.materials.push(newSubject)
   }
 
   calculateAverage(): number {
