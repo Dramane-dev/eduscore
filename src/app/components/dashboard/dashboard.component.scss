@@ -86,5 +86,17 @@
                 color: var(--white);
             }
         }
+        .addSubjectButton{
+            border: none; 
+            background-color: #49d829; 
+            padding: 10px; 
+            border-radius: 2px;
+            color: var(--white);
+            font-weight: 700;
+            margin:20px;
+            cursor: pointer;
+        }
     }
+
+        
 }

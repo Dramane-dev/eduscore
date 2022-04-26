@@ -36,13 +36,8 @@ export class DashboardComponent implements OnInit {
   openPopup(): void {
   }
 
-  addSubject(name: string, coefficient: number): void {
-    let newSubject: IMaterials ={
-      name: name,
-      coefficient: coefficient,
-      note: 0
-    }
-    this.materials.push(newSubject)
+  addSubject(): void {
+    console.log("lien vers AddSubjectComponent")
   }
 
   calculateAverage(): number {
