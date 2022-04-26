@@ -35,7 +35,7 @@
             <h3>{{ "Components.ScoreDashboard.SubjectAverage" | translate }} {{ subjectAverage.toFixed(2) }}</h3>
         </div>
 
-        <div class="add-score-button-container">
+        <div class="add-score-button-container" (click)="openPopup()">
             <button class="add-button">{{ "Components.ScoreDashboard.AddScoreButton" | translate }}</button>
         </div>
     </div>

@@ -2,10 +2,6 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const url = require("url");
 const path = require("path");
 
-require('electron-reload')(path.join(__dirname, `/dist/eduScore/index.html`), {
-    electron: path.join(__dirname, './node_modules', '.bin', 'electron')
-});
-
 const createWindow = (pathFile, width = 1200, height = 800) => {
     const win = new BrowserWindow({
         width: width,
@@ -24,10 +20,11 @@ const createWindow = (pathFile, width = 1200, height = 800) => {
 }
 
 ipcMain.on("open-new-score-window", () => {
-    const win = createWindow("http://localhost:4200/AddScore", width = 1200, height = 800);
+    console.log('okok coucou')
+    const win = createWindow("http://localhost:4200/add-score", width = 1200, height = 800);
 
-    win.on("close", () => {
-    });
+    // win.on("close", () => {
+    // });
 });
 
 app.whenReady()

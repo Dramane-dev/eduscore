@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { ipcRenderer } from "electron";
 import ISubject from 'src/app/interfaces/IScore';
+import { EletronService } from 'src/app/services/eletron.service';
 
 @Component({
   selector: 'app-score-dashboard',
@@ -28,14 +28,14 @@ export class ScoreDashboardComponent implements OnInit {
   ];
   public subjectAverage: number = 0.00;
 
-  constructor(private _router: Router,) { }
+  constructor(private _router: Router, private _electronService: EletronService) { }
 
   ngOnInit(): void {
     this.calculateSubjectAverage();
   }
 
   openPopup(): void {
-    // ipcRenderer.send("open-new-score-window");
+    this._electronService.send("open-new-score-window");
   }
 
   calculateSubjectAverage(): void {
