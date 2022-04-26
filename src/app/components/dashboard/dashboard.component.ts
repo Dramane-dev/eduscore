@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IMaterials } from 'src/app/interfaces/IMaterials';
+import ISubject from 'src/app/interfaces/ISubject';
+import { EduscoreService } from 'src/app/services/eduscore.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,27 +8,29 @@ import { IMaterials } from 'src/app/interfaces/IMaterials';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public pageTitle: string = "Bienvenue sur eduScore";
-  public materials: IMaterials[] = [
+  public materials: ISubject[] = [
     {
+      id: '',
       name: "Programmation",
-      coefficient: 1.5,
-      note: 15.01
+      coeff: 1,
+      average: 15.01
     },
     {
+      id: '',
       name: "Java",
-      coefficient: 2,
-      note: 15.01
+      coeff: 1,
+      average: 15.01
     },
     {
+      id: '',
       name: "Electron Js",
-      coefficient: 1,
-      note: 15.01
+      coeff: 1,
+      average: 15.01
     },
   ];
   public studentAverage: number = 0.00;
 
-  constructor() { }
+  constructor(private _eduScoreService: EduscoreService) { }
 
   ngOnInit(): void {
     this.studentAverage = this.calculateAverage();
@@ -41,6 +44,6 @@ export class DashboardComponent implements OnInit {
   }
 
   calculateAverage(): number {
-    return this.materials.map((material: IMaterials) => material.note ).reduce((previousNote, currentNote) => previousNote + currentNote);
+    return this.materials.map((material: ISubject) => material.average ).reduce((previousNote, currentNote) => previousNote + currentNote);
   }
 }

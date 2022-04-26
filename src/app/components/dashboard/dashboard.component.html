@@ -22,8 +22,8 @@
                 <ng-container *ngFor="let material of materials">
                     <tr>
                         <td>{{ material.name }}</td>
-                        <td>{{ material.coefficient }}</td>
-                        <td>{{ material.note }}</td>
+                        <td>{{ material.coeff }}</td>
+                        <td>{{ material.average }}</td>
                         <td class="buttons-container">
                             <button class="update-button" (click)="openPopup()">Mettre à jour</button>
                             <button class="delete-button">Supprimer</button>
