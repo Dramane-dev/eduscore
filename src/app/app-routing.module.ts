@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: "add-subject", component: AddSubectDashboardComponent },
   { path: "score-dashboard/:id", component: ScoreDashboardComponent },
   { path: "add-score", component: AddScoreComponent },
+  { path: "add-score/:id", component: AddScoreComponent },
   { path: "**", redirectTo: "/" }
 ];
 

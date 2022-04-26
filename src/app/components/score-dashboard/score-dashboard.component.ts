@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import IScore from 'src/app/interfaces/IScore';
 import ISubject from 'src/app/interfaces/ISubject';
 import { EduscoreService } from 'src/app/services/eduscore.service';
-import { EletronService } from 'src/app/services/eletron.service';
+import { ElectronService } from 'src/app/services/electron.service';
 
 @Component({
   selector: 'app-score-dashboard',
@@ -12,23 +12,6 @@ import { EletronService } from 'src/app/services/eletron.service';
   styleUrls: ['./score-dashboard.component.scss']
 })
 export class ScoreDashboardComponent implements OnInit, OnDestroy {
-  // public scores: ISubject[] = [
-  //   {
-  //     id: "score_0",
-  //     subject_id: "programmation",
-  //     score: 15.01
-  //   },
-  //   {
-  //     id: "score_1",
-  //     subject_id: "programmation",
-  //     score: 10.00
-  //   },
-  //   {
-  //     id: "score_2",
-  //     subject_id: "programmation",
-  //     score: 20.00
-  //   },
-  // ];
   public subscription: Subscription = new Subscription();
   public subject: ISubject = {
     id: "",
@@ -43,7 +26,7 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router, 
     private _activatedRoute: ActivatedRoute,
-    private _electronService: EletronService,
+    private _electronService: ElectronService,
     private _eduscoreService: EduscoreService
   ) { }
 

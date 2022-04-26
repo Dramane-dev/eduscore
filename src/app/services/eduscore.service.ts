@@ -24,6 +24,10 @@ export class EduscoreService {
     this._loadDataFromStorage();
   }
 
+  public refreshData() {
+    this._loadDataFromStorage();
+  }
+
   public addNewSubject(subject: Omit<ISubject, 'id'>): void {
     const newSubject = {
       ...subject,

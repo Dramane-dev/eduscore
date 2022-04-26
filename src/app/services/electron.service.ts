@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class EletronService {  
+export class ElectronService {  
   
   private _ipc;
 
@@ -11,7 +11,6 @@ export class EletronService {
     if (window.require) {
       try {
         this._ipc = window.require('electron').ipcRenderer;
-        console.log(this._ipc)
       } catch (e) {
         throw e;
       }

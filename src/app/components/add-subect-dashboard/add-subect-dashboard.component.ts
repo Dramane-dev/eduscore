@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EduscoreService } from 'src/app/services/eduscore.service';
-import { EletronService } from 'src/app/services/eletron.service';
+import { ElectronService } from 'src/app/services/electron.service';
 import ISubject from 'src/app/interfaces/ISubject';
 
 
@@ -17,7 +17,7 @@ export class AddSubectDashboardComponent implements OnInit {
     coeff : new FormControl(1),
   });
 
-  constructor(private _eduScoreService: EduscoreService, private _electronService: EletronService) { }
+  constructor(private _eduScoreService: EduscoreService, private _electronService: ElectronService) { }
 
   ngOnInit(): void {
   }
