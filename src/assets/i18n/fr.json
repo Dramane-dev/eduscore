@@ -17,6 +17,7 @@
                 "Actions": "Actions",
                 "DeleteScoreButton": "Supprimer"
             },
+            "noScore": "Vous n'avez pas de notes...",
             "AddScoreButton": "Ajouter une note",
             "SubjectAverage": "Votre moyenne pour cette matière s'élève à : "
         },

@@ -19,13 +19,13 @@
                 </tr>
             </thead>
             <tbody>
-                <ng-container *ngFor="let material of materials">
+                <ng-container *ngFor="let subject of subjects">
                     <tr>
-                        <td>{{ material.name }}</td>
-                        <td>{{ material.coeff }}</td>
-                        <td>{{ material.average }}</td>
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.coeff }}</td>
+                        <td>{{ subject.average }}</td>
                         <td class="buttons-container">
-                            <button class="update-button" (click)="openPopup()">Mettre à jour</button>
+                            <button class="update-button" (click)="navigateTo(subject.id)">Mettre à jour</button>
                             <button class="delete-button">Supprimer</button>
                         </td>
                     </tr>

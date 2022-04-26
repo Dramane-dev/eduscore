@@ -2,11 +2,20 @@
     <div class="title-container">
         {{ "Components.AddScore.Title" | translate }}
     </div>
+
+    <ng-container *ngIf="!subjectId">
+        <select *ngFor="let subject of subjects">
+            <option (click)="selectSubject(subject.id)" [value]="subject.id">{{ subject.name }}</option>
+        </select>
+    </ng-container>
+
     <div class="form-container">
         <form class="form" [formGroup]="scoreForm">
             <input
                 formControlName="score"
                 type="number"
+                min="0" 
+                max="20"
                 [placeholder]="'Components.AddScore.Title' | translate"
             />
             <div class="buttons-container">
