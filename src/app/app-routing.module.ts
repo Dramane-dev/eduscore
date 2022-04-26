@@ -8,7 +8,7 @@ import { ScoreDashboardComponent } from './components/score-dashboard/score-dash
 const routes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "add-subject", component: AddSubectDashboardComponent },
-  { path: "score-dashboard", component: ScoreDashboardComponent },
+  { path: "score-dashboard/:id", component: ScoreDashboardComponent },
   { path: "add-score", component: AddScoreComponent },
   { path: "**", redirectTo: "/" }
 ];
