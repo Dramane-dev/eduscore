@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="title-container">
+        {{ "Components.AddScore.Title" | translate }}
+    </div>
+    <div class="form-container">
+        <form class="form" [formGroup]="scoreForm">
+            <input
+                formControlName="score"
+                type="number"
+                [placeholder]="'Components.AddScore.Title' | translate"
+            />
+            <div class="buttons-container">
+                <div class="add-button" (click)="addScore()">
+                    <p>{{ "Components.AddScore.AddButton" | translate }}</p>
+                </div>
+                <div class="cancel-button" (click)="navigateTo('/ScoreDashboard')">
+                    <p>{{ "Components.AddScore.CancelButton" | translate }}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

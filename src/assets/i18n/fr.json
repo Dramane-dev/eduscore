@@ -9,6 +9,21 @@
             "CreateTitle": "Création d'une note",
             "UpdateTitle": "Mise à jour d'une note",
             "DeleteTitle": "Suppression d'une note"
+        },
+        "ScoreDashboard": {
+            "BackButton": "Retour",
+            "ScoresArray": {
+                "Score": "Notes",
+                "Actions": "Actions",
+                "DeleteScoreButton": "Supprimer"
+            },
+            "AddScoreButton": "Ajouter une note",
+            "SubjectAverage": "Votre moyenne pour cette matière s'élève à : "
+        },
+        "AddScore": {
+            "Title": "Ajouter une note",
+            "AddButton": "Ajouter",
+            "CancelButton": "Annuler"
         }
     }
 }

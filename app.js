@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const url = require("url");
 const path = require("path");
 
@@ -6,10 +6,10 @@ require('electron-reload')(path.join(__dirname, `/dist/eduScore/index.html`), {
     electron: path.join(__dirname, './node_modules', '.bin', 'electron')
 });
 
-const createWindow = () => {
+const createWindow = (pathFile, width = 1200, height = 800) => {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: width,
+        height: height,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
@@ -17,15 +17,22 @@ const createWindow = () => {
     });
     
     // win.loadFile(path.join(__dirname, `/dist/eduScore/index.html`));
-    win.loadURL('http://localhost:4200');
+    win.loadURL(pathFile);
     win.webContents.on("did-finish-load", () => {
         win.webContents.openDevTools();
     });
 }
 
+ipcMain.on("open-new-score-window", () => {
+    const win = createWindow("http://localhost:4200/AddScore", width = 1200, height = 800);
+
+    win.on("close", () => {
+    });
+});
+
 app.whenReady()
 .then(() => {
-    createWindow();
+    createWindow('http://localhost:4200');
 
     app.on("activate", () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
