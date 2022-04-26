@@ -23,14 +23,18 @@ export class AddSubectDashboardComponent implements OnInit {
   }
 
   addSubject(): void {
-    const {subject, coeff} = this.subjectForm.controls
+    const {subject, coeff} = this.subjectForm.controls;
+
+    if (!subject.value || subject.value === '') {
+      return;
+    }
+  
     const newSubject: Omit<ISubject, "id"> = {
       name: subject.value,
       coeff: coeff.value,
       average: 0
     } 
     this._eduScoreService.addNewSubject(newSubject)
-    console.log("matière: ",subject.value, "coeff: ",coeff.value, "note: ",0)
     this._electronService.send("close-new-subject-window");
 
   }

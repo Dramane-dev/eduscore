@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import ISubject from 'src/app/interfaces/ISubject';
@@ -16,13 +16,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private _subscriptions = new Subscription();
 
-  constructor(private _eduScoreService: EduscoreService, private _electronService: ElectronService, private _router: Router, private _changeDetector: ChangeDetectorRef) { }
+  constructor(private _eduScoreService: EduscoreService, private _electronService: ElectronService, private _router: Router, private _changeDetector: ChangeDetectorRef, private _ngZone: NgZone) { }
 
   ngOnInit(): void {
     this._subscriptions.add(
       this._eduScoreService.getSubjects().subscribe((subjects) => {
         this.subjects = subjects;
-        this.studentAverage = this.calculateAverage();
+        this.studentAverage = this._eduScoreService.getAverageFromSubject(subjects);
         this._changeDetector.detectChanges();
       })
     );
@@ -33,7 +33,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   navigateToSubject(id: string): void {
-    this._router.navigateByUrl(`/score-dashboard/${id}`);
+    this._ngZone.run(() => {
+      this._router.navigateByUrl(`/score-dashboard/${id}`);
+    });
   }
 
   addSubject(): void {
@@ -42,16 +44,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   removeSubject(id: string): void {
     this._eduScoreService.removeSubject(id);
-  }
-
-  calculateAverage(): number {
-    if (this.subjects.length > 0) {
-      return this.subjects.reduce((prevScore, currentSubject) => {
-        return prevScore + (currentSubject.average * currentSubject.coeff);
-      }, 0) / this.subjects.reduce((prevTotal, currentSubject) => {
-        return prevTotal + currentSubject.coeff;
-      } , 1);
-    }
-    return 0;
   }
 }

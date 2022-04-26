@@ -4,8 +4,8 @@
     </div>
 
     <ng-container *ngIf="!subjectId">
-        <select *ngFor="let subject of subjects">
-            <option (click)="selectSubject(subject.id)" [value]="subject.id">{{ subject.name }}</option>
+        <select (change)="selectSubject($event)">
+            <option [value]="subject.id"  *ngFor="let subject of subjects">{{ subject.name }}</option>
         </select>
     </ng-container>
 
@@ -21,9 +21,6 @@
             <div class="buttons-container">
                 <div class="add-button" (click)="addScore()">
                     <p>{{ "Components.AddScore.AddButton" | translate }}</p>
-                </div>
-                <div class="cancel-button" (click)="navigateTo('/ScoreDashboard')">
-                    <p>{{ "Components.AddScore.CancelButton" | translate }}</p>
                 </div>
             </div>
         </form>

@@ -5,7 +5,7 @@ import { EduscoreService } from 'src/app/services/eduscore.service';
 import IScore from 'src/app/interfaces/IScore';
 import { Subscription } from 'rxjs';
 import ISubject from 'src/app/interfaces/ISubject';
-import { EletronService } from 'src/app/services/eletron.service';
+import { ElectronService } from 'src/app/services/electron.service';
 
 @Component({
   selector: 'app-add-score',
@@ -16,14 +16,14 @@ export class AddScoreComponent implements OnInit, OnDestroy {
   public subjectId: string = "";
   public subscription: Subscription = new Subscription();
   public scoreForm: FormGroup = new FormGroup({
-    score: new FormControl("")
+    score: new FormControl(0)
   });
   public subjects: ISubject[] = [];
   constructor(
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _eduscoreService: EduscoreService,
-    private _electronService: EletronService
+    private _electronService: ElectronService
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +46,14 @@ export class AddScoreComponent implements OnInit, OnDestroy {
 
   addScore(): void {
     const { score } = this.scoreForm.controls;
+    if (this.subjectId === '') {
+      if (this.subjects.length > 0) {
+        this.subjectId = this.subjects[0].id;
+      } else {
+        this._electronService.send("close-new-score-window");
+        return;
+      }
+    }
     let newScore: Omit<IScore, 'id'> = {
       subject_id: this.subjectId,
       score: score.value
@@ -55,8 +63,8 @@ export class AddScoreComponent implements OnInit, OnDestroy {
     this._electronService.send("close-new-score-window");
   };
 
-  selectSubject(subjectId: string): void {
-    this.subjectId = subjectId;
+  selectSubject(event: Event): void {
+    this.subjectId = (event.target as any).value;
   }
 
   navigateTo(url: string): void {

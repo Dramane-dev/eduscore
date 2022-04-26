@@ -125,12 +125,16 @@
         .add-button {
             width: 20%;
             border: none; 
-            background-color: #B3E1CE; 
+            background-color: #49d829; 
             padding: 10px; 
-            border-radius: 2px;
             color: var(--white);
             font-weight: 700;
             cursor: pointer;
+            border-radius: 10px;
+
+            &:hover {
+                opacity: 0.7;
+            }
         }
     }
 }

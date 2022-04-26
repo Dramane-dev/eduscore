@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import IScore from 'src/app/interfaces/IScore';
@@ -27,7 +27,8 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
     private _router: Router, 
     private _activatedRoute: ActivatedRoute,
     private _electronService: ElectronService,
-    private _eduscoreService: EduscoreService
+    private _eduscoreService: EduscoreService,
+    private _changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +46,8 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
     .add(      
       this._eduscoreService.getScoreFromSubjectId(this.subjectId).subscribe((scores) => {
         this.scores = scores;
+        this.subjectAverage = this.calculateAverage();
+        this._changeDetector.detectChanges();
       })
     );
   }
@@ -55,7 +58,6 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
 
   deleteScore(scoreId: string): void {
     this._eduscoreService.removeScore(scoreId);
-    this._eduscoreService.getScores();
   }
 
   navigateTo(url: string): void {
@@ -64,5 +66,9 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  calculateAverage() {
+    return this.scores.reduce((prevScore, currentScore) => prevScore + currentScore.score, 0) / this.scores.length;
   }
 }

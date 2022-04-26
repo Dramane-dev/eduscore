@@ -17,5 +17,8 @@ export class AppComponent {
     this._electronService.on('update-data', () => {
       this._eduScoreService.refreshData();
     });
+    this._electronService.on('import-data', (event: any, data: string) => {
+      this._eduScoreService.import(JSON.parse(data));
+    });
   }
 }

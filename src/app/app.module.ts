@@ -12,6 +12,8 @@ import { AddSubectDashboardComponent } from './components/add-subect-dashboard/a
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ScoreDashboardComponent } from './components/score-dashboard/score-dashboard.component';
 import { AddScoreComponent } from './components/add-score/add-score.component';
+import { BackupComponent } from './components/backup/backup.component';
+import { DndDirective } from './directives/dnd.directive';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,6 +26,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     AddSubectDashboardComponent,
     ScoreDashboardComponent,
     AddScoreComponent,
+    BackupComponent,
+    DndDirective,
   ],
   imports: [
     BrowserModule,

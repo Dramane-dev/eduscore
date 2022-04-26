@@ -24,6 +24,21 @@ export class EduscoreService {
     this._loadDataFromStorage();
   }
 
+  public getAverageFromSubject(subjects: ISubject[]) : number  {
+    if (subjects.length === 0) {
+      return 0;
+    }
+    let num = 0
+    let denum = 0
+
+    for (const note of subjects){
+      num += note.average * note.coeff
+      denum += note.coeff
+    }
+
+    return num / denum;
+  }
+
   public refreshData() {
     this._loadDataFromStorage();
   }
@@ -94,6 +109,7 @@ export class EduscoreService {
   }
 
   public import(dataToImport: Export): void {
+    localStorage.removeItem(this._localStorageKey);
     this._subjects.next(dataToImport.subjects);
     this._scores.next(dataToImport.scores);
     this._saveDataToStorage();
@@ -111,7 +127,11 @@ export class EduscoreService {
     const subjects = this._subjects.value;
     for (let subject of subjects) {
       if (subject.id === subjectId) {
-        subject.average = scoresOfSubject.map((score: IScore) => score.score ).reduce((previousScore, currentScore) => previousScore + currentScore) / scoresOfSubject.length;
+        if (scoresOfSubject.length === 0) {
+          subject.average = 0;
+        } else {
+          subject.average = scoresOfSubject.map((score: IScore) => score.score ).reduce((previousScore, currentScore) => previousScore + currentScore, 0) / scoresOfSubject.length;
+        }
       }
     }
     this._subjects.next(subjects);

@@ -3,7 +3,17 @@
         "Home": {},
         "Dashboard": {
             "Title": "Bienvenue sur eduScore",
-            "SubTitle": "Suivi de votre scolarité"
+            "SubTitle": "Suivi de votre scolarité",
+            "Table": {
+                "Subject": "Matière",
+                "Coeff": "Coeff",
+                "Scores": "Moyenne",
+                "Actions": "Actions"
+            },
+            "Average": "Votre moyenne générale s'élève à : ",
+            "AddSubject": "Ajouter une matière",
+            "See": "Voir",
+            "Delete": "Supprimer"
         },
         "Popup": {
             "CreateTitle": "Création d'une note",
@@ -23,8 +33,13 @@
         },
         "AddScore": {
             "Title": "Ajouter une note",
+            "AddButton": "Ajouter"
+        },
+        "AddSubject": {
+            "Title": "Ajouter une matière",
             "AddButton": "Ajouter",
-            "CancelButton": "Annuler"
+            "Subject": "Matière",
+            "Coeff": "Coeff"
         }
     }
 }
