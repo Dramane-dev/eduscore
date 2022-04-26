@@ -77,6 +77,12 @@ export class EduscoreService {
     return this._scores;
   }
 
+  public getScoreFromSubjectId(id: string): Observable<IScore[]> {
+    return this._scores.pipe(
+      map((scores) => scores.filter((score) => score.subject_id === id))
+    );
+  }
+
   public getScore(id: string): Observable<IScore | undefined> {
     return this._scores.pipe(
       map((scores) => scores.find((score) => score.id === id))
