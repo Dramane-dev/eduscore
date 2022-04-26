@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import ISubject from 'src/app/interfaces/ISubject';
 import { EduscoreService } from 'src/app/services/eduscore.service';
+import { EletronService } from 'src/app/services/eletron.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +31,7 @@ export class DashboardComponent implements OnInit {
   ];
   public studentAverage: number = 0.00;
 
-  constructor(private _eduScoreService: EduscoreService) { }
+  constructor(private _eduScoreService: EduscoreService, private _electronService: EletronService) { }
 
   ngOnInit(): void {
     this.studentAverage = this.calculateAverage();
@@ -40,7 +41,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addSubject(): void {
-    console.log("lien vers AddSubjectComponent")
+    this._electronService.send("open-new-subject-window");
   }
 
   calculateAverage(): number {
