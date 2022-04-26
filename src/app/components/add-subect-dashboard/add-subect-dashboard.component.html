@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="title-container">
+        <h1>Ajout de matière</h1>
+    </div>
+    <div class="form-container" [formGroup]="subjectForm">
+        
+        <label for="subject" class="label">Matière: </label>
+        <input id="subject" type="text" formControlName="subject">
+                        
+        <label for="coeff" class="label">Coeff: </label>                
+        <input id="coeff" type="number" formControlName="coeff">
+
+        <button type="button" class="button" (click)="addSubject()">Ajout de matière</button>
+
+    </div>
+</div>

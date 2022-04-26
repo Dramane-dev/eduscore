@@ -9,7 +9,7 @@
             <i class="fas fa-credit-card"></i>
         </h4>
 
-        <table class="depenses-array-container">
+        <table>
             <thead class="header">
                 <tr>
                     <th>Matières</th>
@@ -25,7 +25,7 @@
                         <td>{{ material.coeff }}</td>
                         <td>{{ material.average }}</td>
                         <td class="buttons-container">
-                            <button class="update-button" onclick="openPopup()">Mettre à jour</button>
+                            <button class="update-button" (click)="openPopup()">Mettre à jour</button>
                             <button class="delete-button">Supprimer</button>
                         </td>
                     </tr>
@@ -34,7 +34,9 @@
         </table>
 
         <div class="average-container">
-            <h3>Votre moyenne s'élève à : {{ studentAverage.toFixed(2) }}</h3>
+            <h3>Votre moyenne générale s'élève à : {{ studentAverage.toFixed(2) }}</h3>
         </div>
+        
+        <button class="addSubjectButton" (click)="addSubject()">Ajouter une matière</button>
     </div>
 </div>

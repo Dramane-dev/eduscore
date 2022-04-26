@@ -39,6 +39,10 @@ export class DashboardComponent implements OnInit {
   openPopup(): void {
   }
 
+  addSubject(): void {
+    console.log("lien vers AddSubjectComponent")
+  }
+
   calculateAverage(): number {
     return this.materials.map((material: ISubject) => material.average ).reduce((previousNote, currentNote) => previousNote + currentNote);
   }

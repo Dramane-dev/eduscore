@@ -1,0 +1,43 @@
+.container {
+    font-family: monospace;
+
+    .title-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-size: 35px;
+            color: var(--white);
+        }
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+
+        .label{
+            font-size: 15px;
+            color: var(--white);
+            padding: 10px;
+        }
+        .button{
+            border: none; 
+            background-color: #49d829; 
+            padding: 10px; 
+            border-radius: 2px;
+            color: var(--white);
+            font-weight: 700;
+            margin:20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            opacity: 0.7;
+        }
+    }
+
+}
