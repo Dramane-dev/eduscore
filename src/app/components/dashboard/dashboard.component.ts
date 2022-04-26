@@ -46,6 +46,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addSubject(): void {
-    console.log("lien vers AddSubjectComponent")
+    this._electronService.send("open-new-subject-window");
   }
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EduscoreService } from 'src/app/services/eduscore.service';
+import { EletronService } from 'src/app/services/eletron.service';
+import ISubject from 'src/app/interfaces/ISubject';
+
 
 @Component({
   selector: 'app-add-subect-dashboard',
@@ -8,21 +12,28 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddSubectDashboardComponent implements OnInit {
 
-  subjectForm = new FormGroup({
-
-    subject : new FormControl(''),
-    coeff : new FormControl(''),
-
+  public subjectForm = new FormGroup({
+    subject : new FormControl(),
+    coeff : new FormControl(1),
   });
 
-  constructor() { }
+  constructor(private _eduScoreService: EduscoreService, private _electronService: EletronService) { }
 
   ngOnInit(): void {
   }
 
   addSubject(): void {
     const {subject, coeff} = this.subjectForm.controls
+    const newSubject: Omit<ISubject, "id"> = {
+      name: subject.value,
+      coeff: coeff.value,
+      average: 0
+    } 
+    this._eduScoreService.addNewSubject(newSubject)
     console.log("matière: ",subject.value, "coeff: ",coeff.value, "note: ",0)
+    this._electronService.send("close-new-subject-window");
+
   }
+
 
 }
