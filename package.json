@@ -4,8 +4,9 @@
   "main": "app.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng build --base-href ./ && electron .",
-    "dev": "ng serve",
+    "start": "npm run start:angular",
+    "start:angular": "ng serve",
+    "start:electron": "electron .",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

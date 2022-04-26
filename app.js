@@ -16,7 +16,8 @@ const createWindow = () => {
         }
     });
     
-    win.loadFile(path.join(__dirname, `/dist/eduScore/index.html`));
+    // win.loadFile(path.join(__dirname, `/dist/eduScore/index.html`));
+    win.loadURL('http://localhost:4200');
     win.webContents.on("did-finish-load", () => {
         win.webContents.openDevTools();
     });
