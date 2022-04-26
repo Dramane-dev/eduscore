@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { v4 as uuidv4 } from 'uuid';
 import ISubject from 'src/app/interfaces/ISubject';
 import IScore from 'src/app/interfaces/IScore';
 
@@ -22,13 +24,25 @@ export class EduscoreService {
     this._loadDataFromStorage();
   }
 
-  public addNewSubject(subject: ISubject): void {
-    this._subjects.next([...this._subjects.value, subject]);
+  public addNewSubject(subject: Omit<ISubject, 'id'>): void {
+    const newSubject = {
+      ...subject,
+      id: uuidv4()
+    };
+    this._subjects.next([...this._subjects.value, newSubject]);
     this._saveDataToStorage();
   }
 
-  public addNewScore(score: IScore): void {
-    this._scores.next([...this._scores.value, score]);
+  public addNewScore(score: Omit<IScore, 'id'>): void {
+    const newScore = {
+      ...score,
+      id: uuidv4()
+    };
+    this._scores.next([...this._scores.value, newScore]);
+    const concernedSubject = this._subjects.value.find((subject) => subject.id === score.subject_id);
+    if (concernedSubject) {
+      this._calculeAverageOfSubject(concernedSubject.id);
+    }
     this._saveDataToStorage();
   }
 
@@ -38,7 +52,14 @@ export class EduscoreService {
   }
 
   public removeScore(scoreId: string): void {
+    const concernedScore = this._scores.value.find((score) => score.id === scoreId);
     this._scores.next([...this._scores.value.filter((score) => score.id !== scoreId)]);
+    if (concernedScore) {
+      const concernedSubject = this._subjects.value.find((subject) => subject.id === concernedScore.subject_id);
+      if (concernedSubject) {
+        this._calculeAverageOfSubject(concernedSubject.id);
+      }
+    }
     this._saveDataToStorage();
   }
 
@@ -46,8 +67,20 @@ export class EduscoreService {
     return this._subjects;
   }
 
+  public getSubject(id: string): Observable<ISubject | undefined> {
+    return this._subjects.pipe(
+      map((subjects) => subjects.find((subject) => subject.id === id))
+    );
+  }
+
   public getScores(): Observable<IScore[]> {
     return this._scores;
+  }
+
+  public getScore(id: string): Observable<IScore | undefined> {
+    return this._scores.pipe(
+      map((scores) => scores.find((score) => score.id === id))
+    );
   }
 
   public import(dataToImport: Export): void {
@@ -61,6 +94,17 @@ export class EduscoreService {
       subjects: this._subjects.value,
       scores: this._scores.value
     };
+  }
+
+  private _calculeAverageOfSubject(subjectId: string): void {
+    const scoresOfSubject = this._scores.value.filter((score) => score.subject_id === subjectId);
+    const subjects = this._subjects.value;
+    for (let subject of subjects) {
+      if (subject.id === subjectId) {
+        subject.average = scoresOfSubject.map((score: IScore) => score.score ).reduce((previousScore, currentScore) => previousScore + currentScore) / scoresOfSubject.length;
+      }
+    }
+    this._subjects.next(subjects);
   }
 
   private _loadDataFromStorage(): void {

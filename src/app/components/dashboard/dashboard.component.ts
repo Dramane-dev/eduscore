@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import ISubject from 'src/app/interfaces/ISubject';
+import { EduscoreService } from 'src/app/services/eduscore.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,6 @@ import ISubject from 'src/app/interfaces/ISubject';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  public pageTitle: string = "Bienvenue sur eduScore";
   public materials: ISubject[] = [
     {
       id: '',
@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   ];
   public studentAverage: number = 0.00;
 
-  constructor() { }
+  constructor(private _eduScoreService: EduscoreService) { }
 
   ngOnInit(): void {
     this.studentAverage = this.calculateAverage();
