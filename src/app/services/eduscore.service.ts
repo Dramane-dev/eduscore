@@ -67,6 +67,8 @@ export class EduscoreService {
 
   public removeSubject(subjectId: string): void {
     this._subjects.next([...this._subjects.value.filter((subject) => subject.id !== subjectId)]);
+    const concernedScore = this._scores.value.filter((score) => score.subject_id === subjectId);
+    this._scores.next([...this._scores.value.filter((score) => !concernedScore.map((cs) => cs.id).includes(score.id))]);
     this._saveDataToStorage();
   }
 

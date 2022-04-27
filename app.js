@@ -1,12 +1,15 @@
+// Import all Node.JS Libs
 const { app, BrowserWindow, ipcMain, Menu } = require('electron');
 const { download } = require('electron-dl');
 const fs = require('fs');
 
+// References to all BrowserWindows, null if window is not open
 let globalWin;
 let backupWin;
 let newScoreWin;
 let newSubjectWin;
 
+// Browserwindow Factory
 const createWindow = (pathFile, width = 1200, height = 800) => {
     const win = new BrowserWindow({
         width: width,
@@ -21,15 +24,21 @@ const createWindow = (pathFile, width = 1200, height = 800) => {
     return win;
 }
 
-ipcMain.on("open-new-score-window", () => {
+// Listen to open new score window
+ipcMain.on("open-new-score-window", (event, id) => {
     if (!newScoreWin) {
-        newScoreWin = createWindow("http://localhost:4200/add-score", width = 500, height = 450);
+        let url = "http://localhost:4200/add-score";
+        if (id) {
+            url += `/${id}`;
+        }
+        newScoreWin = createWindow(url, width = 500, height = 450);
         newScoreWin.on('closed', () => {
             newScoreWin = null;
         });
     }
 });
 
+// Listen to close new score window
 ipcMain.on("close-new-score-window", () => {
     if (newScoreWin) {
         globalWin.webContents.send('update-data');
@@ -38,6 +47,7 @@ ipcMain.on("close-new-score-window", () => {
     }
 });
 
+// Listen to open new subject window
 ipcMain.on("open-new-subject-window", () => {
     if (!newSubjectWin) {
         newSubjectWin = createWindow("http://localhost:4200/add-subject", width = 450, height = 350);
@@ -47,6 +57,7 @@ ipcMain.on("open-new-subject-window", () => {
     }
 });
 
+// Listen to close new subject window
 ipcMain.on("close-new-subject-window", () => {
     if(newSubjectWin){
         globalWin.webContents.send('update-data');
@@ -55,6 +66,7 @@ ipcMain.on("close-new-subject-window", () => {
     }
 });
 
+// Listen to export and download backup file
 ipcMain.on("download", async (event, url) => {
     const directory = app.getPath("downloads");
     const filename = "backup.eduscbck";
@@ -67,6 +79,7 @@ ipcMain.on("download", async (event, url) => {
     }});
 });
 
+// Listen to import backup file
 ipcMain.on("import", async (event, path) => {
     fs.readFile(path, 'utf-8', (err, data) => {
         if (err) {
@@ -91,6 +104,7 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 });
 
+// Setup top left app menu
 const template = [
     {
         label: "Action",

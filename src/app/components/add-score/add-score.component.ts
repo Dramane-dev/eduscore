@@ -13,6 +13,7 @@ import { ElectronService } from 'src/app/services/electron.service';
   styleUrls: ['./add-score.component.scss']
 })
 export class AddScoreComponent implements OnInit, OnDestroy {
+  public hasDefaultSubjectId = false;
   public subjectId: string = "";
   public subscription: Subscription = new Subscription();
   public scoreForm: FormGroup = new FormGroup({
@@ -30,7 +31,10 @@ export class AddScoreComponent implements OnInit, OnDestroy {
     this.subscription
     .add(
       this._activatedRoute.params.subscribe((param) => {
-        this.subjectId = param.id ? param.id : ""
+        if (param.id) {
+          this.subjectId = param.id;
+          this.hasDefaultSubjectId = true;
+        }
       })
     );
 

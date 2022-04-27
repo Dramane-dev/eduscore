@@ -53,7 +53,7 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
   }
 
   openPopup(): void {
-    this._electronService.send("open-new-score-window");
+    this._electronService.send("open-new-score-window", this.subjectId);
   }
 
   deleteScore(scoreId: string): void {
@@ -69,6 +69,9 @@ export class ScoreDashboardComponent implements OnInit, OnDestroy {
   }
 
   calculateAverage() {
+    if(this.scores.length === 0) {
+      return 0;
+    }
     return this.scores.reduce((prevScore, currentScore) => prevScore + currentScore.score, 0) / this.scores.length;
   }
 }
