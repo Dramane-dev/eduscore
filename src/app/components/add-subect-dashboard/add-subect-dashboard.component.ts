@@ -20,7 +20,11 @@ export class AddSubectDashboardComponent implements OnInit, OnDestroy {
         coeff: new FormControl(1),
     });
 
-    constructor(private _eduScoreService: EduscoreService, private _electronService: ElectronService, private _activatedRoute: ActivatedRoute) {}
+    constructor(
+        private _eduScoreService: EduscoreService,
+        private _electronService: ElectronService,
+        private _activatedRoute: ActivatedRoute
+    ) {}
 
     ngOnDestroy(): void {
         this.subscription.unsubscribe();
@@ -42,8 +46,8 @@ export class AddSubectDashboardComponent implements OnInit, OnDestroy {
                     console.log(this.subjectId, subject);
                     this.subjectForm.patchValue({
                         subject: subject?.name,
-                        coeff: subject?.coeff
-                    })
+                        coeff: subject?.coeff,
+                    });
                 })
             );
         }

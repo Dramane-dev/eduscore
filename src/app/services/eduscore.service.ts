@@ -53,7 +53,7 @@ export class EduscoreService {
 
     public updateSubject(subjectId: string, editedSubject: Omit<ISubject, 'id'>): void {
         const subjects = this._subjects.value;
-        for(let subject of subjects) {
+        for (let subject of subjects) {
             if (subject.id === subjectId) {
                 subject.coeff = editedSubject.coeff;
                 subject.name = editedSubject.name;

@@ -10,7 +10,10 @@
         <input id="coeff" type="number" min="1" max="20" step="1" formControlName="coeff" />
 
         <button type="button" class="button" (click)="addSubject()">
-            {{ (hasDefaultSubjectId ? "Components.AddSubject.EditButton" : "Components.AddSubject.AddButton") | translate }}
+            {{
+                (hasDefaultSubjectId ? "Components.AddSubject.EditButton" : "Components.AddSubject.AddButton")
+                    | translate
+            }}
         </button>
     </div>
 </div>
