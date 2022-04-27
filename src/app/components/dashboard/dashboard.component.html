@@ -28,6 +28,9 @@
                             <button class="update-button" (click)="navigateToSubject(subject.id)">
                                 {{ "Components.Dashboard.See" | translate }}
                             </button>
+                            <button class="update-button" (click)="editSubject(subject.id)">
+                                {{ "Components.Dashboard.Edit" | translate }}
+                            </button>
                             <button class="delete-button" (click)="removeSubject(subject.id)">
                                 {{ "Components.Dashboard.Delete" | translate }}
                             </button>

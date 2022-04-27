@@ -9,6 +9,7 @@ import { BackupComponent } from './components/backup/backup.component';
 const routes: Routes = [
     { path: '', component: DashboardComponent },
     { path: 'add-subject', component: AddSubectDashboardComponent },
+    { path: 'add-subject/:id', component: AddSubectDashboardComponent },
     { path: 'score-dashboard/:id', component: ScoreDashboardComponent },
     { path: 'add-score', component: AddScoreComponent },
     { path: 'add-score/:id', component: AddScoreComponent },

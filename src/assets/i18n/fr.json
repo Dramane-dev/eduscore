@@ -13,6 +13,7 @@
             "Average": "Votre moyenne générale s'élève à : ",
             "AddSubject": "Ajouter une matière",
             "See": "Voir",
+            "Edit": "Modifier",
             "Delete": "Supprimer"
         },
         "Popup": {
@@ -38,6 +39,7 @@
         "AddSubject": {
             "Title": "Ajouter une matière",
             "AddButton": "Ajouter",
+            "EditButton": "Modifier",
             "Subject": "Matière",
             "Coeff": "Coeff"
         }

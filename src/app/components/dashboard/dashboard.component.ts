@@ -44,6 +44,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         });
     }
 
+    editSubject(id: string): void {
+        this._ngZone.run(() => {
+            this._electronService.send('open-new-subject-window', id);
+        });
+    }
+
     addSubject(): void {
         this._electronService.send('open-new-subject-window');
     }

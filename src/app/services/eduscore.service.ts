@@ -51,6 +51,18 @@ export class EduscoreService {
         this._saveDataToStorage();
     }
 
+    public updateSubject(subjectId: string, editedSubject: Omit<ISubject, 'id'>): void {
+        const subjects = this._subjects.value;
+        for(let subject of subjects) {
+            if (subject.id === subjectId) {
+                subject.coeff = editedSubject.coeff;
+                subject.name = editedSubject.name;
+            }
+        }
+        this._subjects.next([...subjects]);
+        this._saveDataToStorage();
+    }
+
     public addNewScore(score: Omit<IScore, 'id'>): void {
         const newScore = {
             ...score,

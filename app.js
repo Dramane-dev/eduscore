@@ -48,9 +48,13 @@ ipcMain.on("close-new-score-window", () => {
 });
 
 // Listen to open new subject window
-ipcMain.on("open-new-subject-window", () => {
+ipcMain.on("open-new-subject-window", (event, id) => {
     if (!newSubjectWin) {
-        newSubjectWin = createWindow("http://localhost:4200/add-subject", (width = 450), (height = 350));
+        let url = "http://localhost:4200/add-subject";
+        if (id) {
+            url += `/${id}`;
+        }
+        newSubjectWin = createWindow(url, (width = 450), (height = 350));
         newSubjectWin.on("closed", () => {
             newSubjectWin = null;
         });
