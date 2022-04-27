@@ -1,28 +1,41 @@
 .container {
     font-family: monospace;
 
-    .title-container {
+    .back-button-container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        margin: 1%;
+        cursor: pointer;
 
-        h1 {
-            font-size: 35px;
-            color: var(--white);
+        p {
+            color: #ffffff;
+            font-size: x-large;
+        }
+
+        p:hover {
+            color: #e9d6ba;
         }
     }
 
-    .materials-container {
+    .subject-title-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-bottom: 2%;
 
         h4 {
             color: var(--white);
-            font-size: 25px;
+            font-size: 30px;
         }
+    }
+
+    .subject-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         table {
             border-collapse: collapse;
@@ -68,37 +81,57 @@
 
         .update-button {
             border: none;
-            background-color: #49d829;
+            background-color: #b3e1ce;
             padding: 10px;
-            border-radius: 10px;
-            color: var(--white);
+            border-radius: 2px;
+            color: #000000;
             font-weight: 700;
             cursor: pointer;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
 
         .update-button:hover {
             opacity: 0.4;
         }
 
-        .average-container {
+        .subject-average-container {
+            margin-top: 5%;
+
             h3 {
                 font-size: 20px;
                 color: var(--white);
             }
         }
-        .addSubjectButton {
+    }
+
+    .no-scores-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        p {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    }
+
+    .add-score-button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 5%;
+
+        .add-button {
+            width: 20%;
             border: none;
             background-color: #49d829;
             padding: 10px;
-            border-radius: 10px;
             color: var(--white);
             font-weight: 700;
-            margin: 20px;
             cursor: pointer;
+            border-radius: 10px;
 
             &:hover {
                 opacity: 0.7;

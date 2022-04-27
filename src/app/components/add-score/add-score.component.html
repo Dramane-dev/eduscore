@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="title-container">
+        {{ "Components.AddScore.Title" | translate }}
+    </div>
+
+    <ng-container *ngIf="!hasDefaultSubjectId">
+        <select (change)="selectSubject($event)">
+            <option [value]="subject.id" *ngFor="let subject of subjects">{{ subject.name }}</option>
+        </select>
+    </ng-container>
+
+    <div class="form-container">
+        <form class="form" [formGroup]="scoreForm">
+            <input
+                formControlName="score"
+                type="number"
+                min="0"
+                max="20"
+                [placeholder]="'Components.AddScore.Title' | translate"
+            />
+            <div class="buttons-container">
+                <div class="add-button" (click)="addScore()">
+                    <p>{{ "Components.AddScore.AddButton" | translate }}</p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

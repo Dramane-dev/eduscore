@@ -9,24 +9,31 @@
             <i class="fas fa-credit-card"></i>
         </h4>
 
-        <table class="depenses-array-container">
+        <table>
             <thead class="header">
                 <tr>
-                    <th>Matières</th>
-                    <th>Coeff</th>
-                    <th>Notes</th>
-                    <th>Actions</th>
+                    <th>{{ "Components.Dashboard.Table.Subject" | translate }}</th>
+                    <th>{{ "Components.Dashboard.Table.Coeff" | translate }}</th>
+                    <th>{{ "Components.Dashboard.Table.Scores" | translate }}</th>
+                    <th>{{ "Components.Dashboard.Table.Actions" | translate }}</th>
                 </tr>
             </thead>
             <tbody>
-                <ng-container *ngFor="let material of materials">
+                <ng-container *ngFor="let subject of subjects">
                     <tr>
-                        <td>{{ material.name }}</td>
-                        <td>{{ material.coefficient }}</td>
-                        <td>{{ material.note }}</td>
+                        <td>{{ subject.name }}</td>
+                        <td>{{ subject.coeff }}</td>
+                        <td>{{ subject.average }}</td>
                         <td class="buttons-container">
-                            <button class="update-button" onclick="openPopup()">Mettre à jour</button>
-                            <button class="delete-button">Supprimer</button>
+                            <button class="update-button" (click)="navigateToSubject(subject.id)">
+                                {{ "Components.Dashboard.See" | translate }}
+                            </button>
+                            <button class="update-button" (click)="editSubject(subject.id)">
+                                {{ "Components.Dashboard.Edit" | translate }}
+                            </button>
+                            <button class="delete-button" (click)="removeSubject(subject.id)">
+                                {{ "Components.Dashboard.Delete" | translate }}
+                            </button>
                         </td>
                     </tr>
                 </ng-container>
@@ -34,7 +41,11 @@
         </table>
 
         <div class="average-container">
-            <h3>Votre moyenne s'élève à : {{ studentAverage.toFixed(2) }}</h3>
+            <h3>{{ "Components.Dashboard.Average" | translate }} {{ studentAverage.toFixed(2) }}</h3>
         </div>
+
+        <button class="addSubjectButton" (click)="addSubject()">
+            {{ "Components.Dashboard.AddSubject" | translate }}
+        </button>
     </div>
 </div>

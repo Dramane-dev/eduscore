@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="back-button-container">
+        <p (click)="navigateTo('')">< {{ "Components.ScoreDashboard.BackButton" | translate }}</p>
+    </div>
+
+    <div class="subject-title-container">
+        <h4>
+            {{ subject ? subject.name : "Aucune matière" }}
+            <i class="fas fa-credit-card"></i>
+        </h4>
+    </div>
+
+    <div class="subject-container">
+        <ng-container *ngIf="scores.length > 0; else noScores">
+            <table>
+                <thead class="header">
+                    <tr>
+                        <th>{{ "Components.ScoreDashboard.ScoresArray.Score" | translate }}</th>
+                        <th>{{ "Components.ScoreDashboard.ScoresArray.Actions" | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let score of scores">
+                        <tr>
+                            <td>{{ score.score }}</td>
+                            <td class="buttons-container">
+                                <button class="delete-button" (click)="deleteScore(score.id)">
+                                    {{ "Components.ScoreDashboard.ScoresArray.DeleteScoreButton" | translate }}
+                                </button>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </ng-container>
+
+        <ng-template #noScores>
+            <div class="no-scores-container">
+                <p>
+                    {{ "Components.ScoreDashboard.noScore" | translate }}
+                </p>
+            </div>
+        </ng-template>
+
+        <div class="subject-average-container">
+            <h3>{{ "Components.ScoreDashboard.SubjectAverage" | translate }} {{ subjectAverage.toFixed(2) }}</h3>
+        </div>
+
+        <div class="add-score-button-container" (click)="openPopup()">
+            <button class="add-button">{{ "Components.ScoreDashboard.AddScoreButton" | translate }}</button>
+        </div>
+    </div>
+</div>

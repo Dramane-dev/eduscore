@@ -1,42 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { IMaterials } from 'src/app/interfaces/IMaterials';
+import { ChangeDetectorRef, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import ISubject from 'src/app/interfaces/ISubject';
+import { EduscoreService } from 'src/app/services/eduscore.service';
+import { ElectronService } from 'src/app/services/electron.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
-  public pageTitle: string = "Bienvenue sur eduScore";
-  public materials: IMaterials[] = [
-    {
-      name: "Programmation",
-      coefficient: 1,
-      note: 15.01
-    },
-    {
-      name: "Java",
-      coefficient: 1,
-      note: 15.01
-    },
-    {
-      name: "Electron Js",
-      coefficient: 1,
-      note: 15.01
-    },
-  ];
-  public studentAverage: number = 0.00;
+export class DashboardComponent implements OnInit, OnDestroy {
+    public subjects: ISubject[] = [];
+    public studentAverage: number = 0.0;
 
-  constructor() { }
+    private _subscriptions = new Subscription();
 
-  ngOnInit(): void {
-    this.studentAverage = this.calculateAverage();
-  }
+    constructor(
+        private _eduScoreService: EduscoreService,
+        private _electronService: ElectronService,
+        private _router: Router,
+        private _changeDetector: ChangeDetectorRef,
+        private _ngZone: NgZone
+    ) {}
 
-  openPopup(): void {
-  }
+    ngOnInit(): void {
+        this._subscriptions.add(
+            this._eduScoreService.getSubjects().subscribe((subjects) => {
+                this.subjects = subjects;
+                this.studentAverage = this._eduScoreService.getAverageFromSubject(subjects);
+                this._changeDetector.detectChanges();
+            })
+        );
+    }
 
-  calculateAverage(): number {
-    return this.materials.map((material: IMaterials) => material.note ).reduce((previousNote, currentNote) => previousNote + currentNote);
-  }
+    ngOnDestroy(): void {
+        this._subscriptions.unsubscribe();
+    }
+
+    navigateToSubject(id: string): void {
+        this._ngZone.run(() => {
+            this._router.navigateByUrl(`/score-dashboard/${id}`);
+        });
+    }
+
+    editSubject(id: string): void {
+        this._ngZone.run(() => {
+            this._electronService.send('open-new-subject-window', id);
+        });
+    }
+
+    addSubject(): void {
+        this._electronService.send('open-new-subject-window');
+    }
+
+    removeSubject(id: string): void {
+        this._eduScoreService.removeSubject(id);
+    }
 }

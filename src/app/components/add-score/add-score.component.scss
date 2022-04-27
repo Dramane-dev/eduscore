@@ -1,0 +1,91 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+
+    .title-container {
+        margin-top: 10%;
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .form-container {
+        width: 50%;
+        margin-top: 5%;
+        margin-bottom: 10%;
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            input {
+                margin: 3%;
+                padding: 1.5%;
+                background: none;
+                border: none;
+                outline: none;
+                color: #ffffff;
+                height: 40px;
+                width: 70%;
+                border: 2px solid #a1a1a1;
+                border-radius: 10px;
+                font-size: medium;
+            }
+
+            input:hover {
+                border: 2px solid #ffffff;
+            }
+
+            input:focus {
+                border: 2px solid #ffffff;
+            }
+        }
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 10%;
+
+        .add-button {
+            width: 40%;
+            position: relative;
+            background-color: #49d829;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 3%;
+            margin-right: 3%;
+
+            &:hover {
+                opacity: 0.7;
+            }
+
+            p {
+                text-align: center;
+                font-weight: 600;
+            }
+        }
+
+        .cancel-button {
+            width: 40%;
+            position: relative;
+            background: #f79196;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 3%;
+            margin-left: 3%;
+
+            p {
+                text-align: center;
+                font-weight: 600;
+            }
+        }
+    }
+}
