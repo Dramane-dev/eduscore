@@ -14,7 +14,8 @@
             "AddSubject": "Ajouter une matière",
             "See": "Voir",
             "Edit": "Modifier",
-            "Delete": "Supprimer"
+            "Delete": "Supprimer",
+            "Logout": "Déconnexion"
         },
         "Popup": {
             "CreateTitle": "Création d'une note",
@@ -42,6 +43,9 @@
             "EditButton": "Modifier",
             "Subject": "Matière",
             "Coeff": "Coeff"
+        },
+        "Login": {
+            "AddButton": "Ajouter"
         }
     }
 }

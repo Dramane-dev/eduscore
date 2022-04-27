@@ -43,7 +43,6 @@ export class AddSubectDashboardComponent implements OnInit, OnDestroy {
         if (this.subjectId) {
             this.subscription.add(
                 this._eduScoreService.getSubject(this.subjectId).subscribe((subject) => {
-                    console.log(this.subjectId, subject);
                     this.subjectForm.patchValue({
                         subject: subject?.name,
                         coeff: subject?.coeff,

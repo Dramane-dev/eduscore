@@ -54,6 +54,7 @@ ipcMain.on("open-new-subject-window", (event, id) => {
         if (id) {
             url += `/${id}`;
         }
+        console.log(url);
         newSubjectWin = createWindow(url, (width = 450), (height = 350));
         newSubjectWin.on("closed", () => {
             newSubjectWin = null;

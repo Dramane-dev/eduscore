@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
 import ISubject from 'src/app/interfaces/ISubject';
 import IScore from 'src/app/interfaces/IScore';
+import { Router } from '@angular/router';
 
 export interface Export {
     subjects: ISubject[];
@@ -14,13 +15,26 @@ export interface Export {
     providedIn: 'root',
 })
 export class EduscoreService {
-    private _localStorageKey = 'eduscore-data';
+    private _localStorageKey = 'eduscore-data-';
+    private _localStorageKeyForUsers = 'eduscore-users';
+    private _localStorageCurrentUser = 'eduscore-current-user';
+    private _currentUsername: string | null = null;
 
     private _subjects = new BehaviorSubject<ISubject[]>([]);
     private _scores = new BehaviorSubject<IScore[]>([]);
+    private _users = new BehaviorSubject<string[]>([]);
 
-    constructor() {
-        this._loadDataFromStorage();
+    constructor(private _router: Router) {
+        const unparsedUsers = localStorage.getItem(this._localStorageKeyForUsers);
+        if (unparsedUsers) {
+            const users = JSON.parse(unparsedUsers);
+            this._users.next(users);
+        }
+        const currentUser = localStorage.getItem(this._localStorageCurrentUser);
+        if (currentUser) {
+            this._currentUsername = currentUser;
+            this.refreshData();
+        }
     }
 
     public getAverageFromSubject(subjects: ISubject[]): number {
@@ -40,6 +54,32 @@ export class EduscoreService {
 
     public refreshData() {
         this._loadDataFromStorage();
+    }
+
+    public logout() {
+        localStorage.removeItem(this._localStorageCurrentUser);
+        this._currentUsername = null;
+        this._router.navigateByUrl('/');
+    }
+
+    public login(username: string) {
+        const users = this._users.value;
+        if (users.find((u: string) => u === username)) {
+            this._currentUsername = username;
+            localStorage.setItem(this._localStorageCurrentUser, username);
+            this._loadDataFromStorage();
+        } else {
+            this._users.next([...this._users.value, username]);
+            localStorage.setItem(this._localStorageKeyForUsers, JSON.stringify([...this._users.value]));
+            localStorage.setItem(this._localStorageKey + username, JSON.stringify({
+                subjects: [],
+                scores: []
+            }));
+            this._currentUsername = username;
+            localStorage.setItem(this._localStorageCurrentUser, username);
+            this._loadDataFromStorage();
+        }
+        this._router.navigateByUrl('/dashboard');
     }
 
     public addNewSubject(subject: Omit<ISubject, 'id'>): void {
@@ -97,6 +137,10 @@ export class EduscoreService {
         this._saveDataToStorage();
     }
 
+    public getUsers(): Observable<string[]> {
+        return this._users;
+    }
+
     public getSubjects(): Observable<ISubject[]> {
         return this._subjects;
     }
@@ -151,9 +195,10 @@ export class EduscoreService {
     }
 
     private _loadDataFromStorage(): void {
-        const storedData = localStorage.getItem(this._localStorageKey);
+        const storedData = localStorage.getItem(this._localStorageKey + this._currentUsername);
         if (storedData) {
             const parsedData = JSON.parse(storedData);
+            console.log(parsedData);
             this._subjects.next(parsedData.subjects);
             this._scores.next(parsedData.scores);
         }
@@ -161,6 +206,7 @@ export class EduscoreService {
 
     private _saveDataToStorage(): void {
         const dataToStore = this.export();
-        localStorage.setItem(this._localStorageKey, JSON.stringify(dataToStore));
+        console.log(dataToStore);
+        localStorage.setItem(this._localStorageKey + this._currentUsername, JSON.stringify(dataToStore));
     }
 }

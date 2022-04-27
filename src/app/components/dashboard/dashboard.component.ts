@@ -38,6 +38,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this._subscriptions.unsubscribe();
     }
 
+    logout(): void {
+        this._eduScoreService.logout();
+    }
+
     navigateToSubject(id: string): void {
         this._ngZone.run(() => {
             this._router.navigateByUrl(`/score-dashboard/${id}`);

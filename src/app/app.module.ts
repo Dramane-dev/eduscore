@@ -14,6 +14,7 @@ import { ScoreDashboardComponent } from './components/score-dashboard/score-dash
 import { AddScoreComponent } from './components/add-score/add-score.component';
 import { BackupComponent } from './components/backup/backup.component';
 import { DndDirective } from './directives/dnd.directive';
+import { LoginComponent } from './components/login/login.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         AddScoreComponent,
         BackupComponent,
         DndDirective,
+        LoginComponent,
     ],
     imports: [
         BrowserModule,

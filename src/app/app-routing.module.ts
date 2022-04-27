@@ -5,16 +5,18 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddSubectDashboardComponent } from './components/add-subect-dashboard/add-subect-dashboard.component';
 import { ScoreDashboardComponent } from './components/score-dashboard/score-dashboard.component';
 import { BackupComponent } from './components/backup/backup.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-    { path: '', component: DashboardComponent },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'add-subject', component: AddSubectDashboardComponent },
     { path: 'add-subject/:id', component: AddSubectDashboardComponent },
     { path: 'score-dashboard/:id', component: ScoreDashboardComponent },
     { path: 'add-score', component: AddScoreComponent },
     { path: 'add-score/:id', component: AddScoreComponent },
     { path: 'backup', component: BackupComponent },
-    { path: '**', redirectTo: '/' },
+    { path: 'login', component: LoginComponent },
+    { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({

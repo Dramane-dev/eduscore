@@ -1,6 +1,15 @@
 .container {
     font-family: monospace;
 
+    .logout {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        color: var(--white);
+        cursor: pointer;
+        font-weight: 800;
+    }
+
     .title-container {
         display: flex;
         flex-direction: row;

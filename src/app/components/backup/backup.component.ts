@@ -20,7 +20,6 @@ export class BackupComponent implements OnInit {
 
     onFileDropped(file: File) {
         if (file && file.name.split('.').reverse()[0] === 'eduscbck') {
-            console.log(file);
             this._electronService.send('import', (file as any).path);
         }
     }
