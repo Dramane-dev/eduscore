@@ -2,6 +2,18 @@
 const { app, BrowserWindow, ipcMain, Menu } = require("electron");
 const { download } = require("electron-dl");
 const fs = require("fs");
+const express = require('express');
+const http = require('http');
+const path = require('path');
+
+
+const expressApp = express();
+const port = process.env.PORT || 4200;
+expressApp.use(express.static(__dirname + '/dist/eduScore'));
+expressApp.get('/*', (req, res) => res.sendFile(path.join(__dirname)));
+
+const server = http.createServer(expressApp);
+server.listen(port, () => console.log(`expressApp running on: http://localhost:${port}`));
 
 // References to all BrowserWindows, null if window is not open
 let globalWin;
