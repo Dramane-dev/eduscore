@@ -8,14 +8,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: #FFF;
+    color: #fff;
     margin: 1em;
-    border: 6px dashed rgba(255, 255, 255, .4);
+    border: 6px dashed rgba(255, 255, 255, 0.4);
     border-radius: 4px;
 
     &.fileover {
         border-color: rgba(255, 255, 255, 1);
-    } 
+    }
 
     .export {
         margin-top: 5%;

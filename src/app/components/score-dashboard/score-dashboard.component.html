@@ -5,13 +5,12 @@
 
     <div class="subject-title-container">
         <h4>
-             {{ subject ? subject.name : "Aucune matière" }}
+            {{ subject ? subject.name : "Aucune matière" }}
             <i class="fas fa-credit-card"></i>
         </h4>
     </div>
 
     <div class="subject-container">
-
         <ng-container *ngIf="scores.length > 0; else noScores">
             <table>
                 <thead class="header">
@@ -25,7 +24,9 @@
                         <tr>
                             <td>{{ score.score }}</td>
                             <td class="buttons-container">
-                                <button class="delete-button" (click)="deleteScore(score.id)">{{ "Components.ScoreDashboard.ScoresArray.DeleteScoreButton" | translate }}</button>
+                                <button class="delete-button" (click)="deleteScore(score.id)">
+                                    {{ "Components.ScoreDashboard.ScoresArray.DeleteScoreButton" | translate }}
+                                </button>
                             </td>
                         </tr>
                     </ng-container>

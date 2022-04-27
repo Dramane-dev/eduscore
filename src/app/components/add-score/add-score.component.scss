@@ -31,7 +31,7 @@
                 color: #ffffff;
                 height: 40px;
                 width: 70%;
-                border: 2px solid #A1A1A1;
+                border: 2px solid #a1a1a1;
                 border-radius: 10px;
                 font-size: medium;
             }
@@ -57,7 +57,7 @@
         .add-button {
             width: 40%;
             position: relative;
-            background-color: #49d829; 
+            background-color: #49d829;
             border-radius: 10px;
             cursor: pointer;
             margin-top: 3%;
@@ -66,7 +66,7 @@
             &:hover {
                 opacity: 0.7;
             }
-    
+
             p {
                 text-align: center;
                 font-weight: 600;
@@ -76,12 +76,12 @@
         .cancel-button {
             width: 40%;
             position: relative;
-            background: #F79196;
+            background: #f79196;
             border-radius: 10px;
             cursor: pointer;
             margin-top: 3%;
             margin-left: 3%;
-    
+
             p {
                 text-align: center;
                 font-weight: 600;

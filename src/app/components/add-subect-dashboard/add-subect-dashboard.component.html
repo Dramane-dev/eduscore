@@ -3,14 +3,14 @@
         <h1>{{ "Components.AddSubject.Title" | translate }}</h1>
     </div>
     <div class="form-container" [formGroup]="subjectForm">
-        
         <label for="subject" class="label">{{ "Components.AddSubject.Subject" | translate }}: </label>
-        <input id="subject" type="text" formControlName="subject">
-                        
-        <label for="coeff" class="label">{{ "Components.AddSubject.Coeff" | translate }}: </label>                
-        <input id="coeff" type="number" min="1" max="20" step="1" formControlName="coeff">
+        <input id="subject" type="text" formControlName="subject" />
 
-        <button type="button" class="button" (click)="addSubject()">{{ "Components.AddSubject.AddButton" | translate }}</button>
+        <label for="coeff" class="label">{{ "Components.AddSubject.Coeff" | translate }}: </label>
+        <input id="coeff" type="number" min="1" max="20" step="1" formControlName="coeff" />
 
+        <button type="button" class="button" (click)="addSubject()">
+            {{ "Components.AddSubject.AddButton" | translate }}
+        </button>
     </div>
 </div>

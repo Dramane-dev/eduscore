@@ -7,17 +7,17 @@ import { ScoreDashboardComponent } from './components/score-dashboard/score-dash
 import { BackupComponent } from './components/backup/backup.component';
 
 const routes: Routes = [
-  { path: "", component: DashboardComponent },
-  { path: "add-subject", component: AddSubectDashboardComponent },
-  { path: "score-dashboard/:id", component: ScoreDashboardComponent },
-  { path: "add-score", component: AddScoreComponent },
-  { path: "add-score/:id", component: AddScoreComponent },
-  { path: "backup", component: BackupComponent },
-  { path: "**", redirectTo: "/" }
+    { path: '', component: DashboardComponent },
+    { path: 'add-subject', component: AddSubectDashboardComponent },
+    { path: 'score-dashboard/:id', component: ScoreDashboardComponent },
+    { path: 'add-score', component: AddScoreComponent },
+    { path: 'add-score/:id', component: AddScoreComponent },
+    { path: 'backup', component: BackupComponent },
+    { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

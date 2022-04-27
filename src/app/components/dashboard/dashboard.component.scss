@@ -28,12 +28,13 @@
             border-collapse: collapse;
             width: 80%;
         }
-        
+
         .header {
             background-color: var(--caramel-pastel);
         }
-          
-        td, th {
+
+        td,
+        th {
             border: 1px solid #dddddd;
             text-align: center;
             font-size: x-large;
@@ -50,25 +51,25 @@
             justify-content: space-around;
             align-items: center;
         }
-        
+
         .delete-button {
-            border: none; 
-            background-color: #F79196; 
-            padding: 10px; 
+            border: none;
+            background-color: #f79196;
+            padding: 10px;
             border-radius: 2px;
             color: var(--white);
             font-weight: 700;
             cursor: pointer;
         }
-        
+
         .delete-button:hover {
             opacity: 0.4;
         }
-        
+
         .update-button {
-            border: none; 
-            background-color: #49d829; 
-            padding: 10px; 
+            border: none;
+            background-color: #49d829;
+            padding: 10px;
             border-radius: 10px;
             color: var(--white);
             font-weight: 700;
@@ -84,20 +85,19 @@
         }
 
         .average-container {
-
             h3 {
                 font-size: 20px;
                 color: var(--white);
             }
         }
-        .addSubjectButton{
-            border: none; 
-            background-color: #49d829; 
-            padding: 10px; 
+        .addSubjectButton {
+            border: none;
+            background-color: #49d829;
+            padding: 10px;
             border-radius: 10px;
             color: var(--white);
             font-weight: 700;
-            margin:20px;
+            margin: 20px;
             cursor: pointer;
 
             &:hover {
@@ -105,6 +105,4 @@
             }
         }
     }
-
-        
 }

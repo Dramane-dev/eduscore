@@ -14,7 +14,7 @@
         }
 
         p:hover {
-            color: #E9D6BA;
+            color: #e9d6ba;
         }
     }
 
@@ -41,12 +41,13 @@
             border-collapse: collapse;
             width: 80%;
         }
-        
+
         .header {
             background-color: var(--caramel-pastel);
         }
-          
-        td, th {
+
+        td,
+        th {
             border: 1px solid #dddddd;
             text-align: center;
             font-size: x-large;
@@ -63,25 +64,25 @@
             justify-content: space-around;
             align-items: center;
         }
-        
+
         .delete-button {
-            border: none; 
-            background-color: #F79196; 
-            padding: 10px; 
+            border: none;
+            background-color: #f79196;
+            padding: 10px;
             border-radius: 2px;
             color: var(--white);
             font-weight: 700;
             cursor: pointer;
         }
-        
+
         .delete-button:hover {
             opacity: 0.4;
         }
-        
+
         .update-button {
-            border: none; 
-            background-color: #B3E1CE; 
-            padding: 10px; 
+            border: none;
+            background-color: #b3e1ce;
+            padding: 10px;
             border-radius: 2px;
             color: #000000;
             font-weight: 700;
@@ -124,9 +125,9 @@
 
         .add-button {
             width: 20%;
-            border: none; 
-            background-color: #49d829; 
-            padding: 10px; 
+            border: none;
+            background-color: #49d829;
+            padding: 10px;
             color: var(--white);
             font-weight: 700;
             cursor: pointer;

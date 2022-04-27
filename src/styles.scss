@@ -1,9 +1,11 @@
 @import url("./theme/variables.scss");
 
-*, *:before, *:after { 
-    -moz-box-sizing: border-box; 
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 body {
@@ -13,7 +15,6 @@ body {
     background-color: var(--dark-body-color);
 }
 
-
 mat-dialog-container {
     background-color: var(--dark-body-color) !important;
 }
@@ -22,4 +23,7 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-html, body { height: 100%; }
+html,
+body {
+    height: 100%;
+}

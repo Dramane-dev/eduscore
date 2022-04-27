@@ -3,4 +3,4 @@ export default interface ISubject {
     name: string;
     coeff: number;
     average: number;
-};
+}
